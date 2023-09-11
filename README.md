@@ -4,4 +4,10 @@ Dockerfile załączony<br>
 Testy dodane<br>
 Dla obliczeń użył bym jednak biblioteki BCMath ale zrobiłem starym sposobem.<br>
 
+by uruchomic:<br>
+git clone .. <br>
+composer install<br>
+yarn encore dev<br>
+
+
 daniel (at) jablonski . pl<br>
