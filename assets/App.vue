@@ -61,20 +61,30 @@
   export default {
     name: 'App',
     data() {
-      return {
-        addLink: '/api/add/150/20',
-        addInput1: 150,
-        addInput2: 50,
+      var addInput1 = 150
+      var addInput2 = 50
+      var substractInput1 = 150
+      var substractInput2 = 50
+      var multiplyInput1 = 150
+      var multiplyInput2 = 50
+      var divideInput1 = 150
+      var divideInput2 = 50
 
-        substractLink: '/api/substract/150/20',
+      return {
+        addLink: '/api/add/'+addInput1+'/'+addInput2,
+        addInput1: addInput1,
+        addInput2: addInput2,
+        
+
+        substractLink: '/api/substract/'+substractInput1+'/'+substractInput2,
         substractInput1: 150,
         substractInput2: 50,
 
-        multiplyLink: '/api/multiply/150/20',
+        multiplyLink: '/api/multiply/'+multiplyInput1+'/'+multiplyInput2,
         multiplyInput1: 150,
         multiplyInput2: 50,
 
-        divideLink: '/api/divide/150/20',
+        divideLink: '/api/divide/'+divideInput1+'/'+divideInput2,
         divideInput1: 150,
         divideInput2: 50
 
