@@ -3,6 +3,7 @@
         <div class="container-fluid welcome-section">
             <div class="text-center welcome-text">
                 Witaj w mikroserwisie kalkulatora!
+                <div ref="error_msg" v-show="error_msgVisible" class="alert alert-danger alert-dismissible fade show" role="alert"></div>
                 <div class="container mt-5">
                     <table class="table table-bordered table-hover">
                         <thead class="thead-dark">
@@ -69,8 +70,11 @@
       var multiplyInput2 = 50
       var divideInput1 = 150
       var divideInput2 = 50
+      var error = ''
 
       return {
+        error_msgVisible: false,
+
         addLink: '/api/add/'+addInput1+'/'+addInput2,
         addInput1: addInput1,
         addInput2: addInput2,
@@ -124,6 +128,7 @@
             .then(response => response.json())
             .then(data => {
                 this.$refs.addResult.innerText = data.result;
+                this.handleError(data.error);
             });
         //window.open(this.addLink, '_blank');
       },
@@ -133,6 +138,7 @@
             .then(response => response.json())
             .then(data => {
                 this.$refs.substractResult.innerText = data.result;
+                this.handleError(data.error);
             });
       },
 
@@ -141,6 +147,7 @@
             .then(response => response.json())
             .then(data => {
                 this.$refs.multiplyResult.innerText = data.result;
+                this.handleError(data.error);
             });
       },
 
@@ -149,8 +156,21 @@
             .then(response => response.json())
             .then(data => {
                 this.$refs.divideResult.innerText = data.result;
-            });
+                this.handleError(data.error);
+                
+        });
+        
       },
+
+      handleError(error){
+        if (error != ''){
+          this.$refs.error_msg.innerText = error;
+          this.error_msgVisible = true;
+        } else {
+          this.error_msgVisible = false;
+        }
+        
+      }
 
   }
   }
