@@ -105,14 +105,15 @@ class Calculator
         switch($function)
         {
             case 'multiply':
-                $number = $number / 10000.0;
+                $number = intval($number) / 10000.0;
                 break;
             case 'divide':
+                $number = intval($number * 100) / 100.0;
                 break;
             default:
-                $number = $number / 100.0;
+                $number = intval($number) / 100.0;
         }
-
+        
         $number = number_format($number, 2, '.', '');
         $number = (float)$number;
         //dd($number);

@@ -9,22 +9,61 @@ use App\Model\Calculator;
 
 final class CalculatorTest extends TestCase
 {
-    private int $first_int = 5;
-    private int $second_int = 5;
+    private string $first_int = '15,99';
+    private string $second_int = '5,99';
 
-
-    public function testInvalidInput()
+    public function testCalculator_adding_simple(): void
     {
         $repository = new Calculator();
 
-        $this->expectException(\TypeError::class);
-        $repository->add('string', 5);
+        $array = array('first number' => 1599,
+                    'second number' => 599,
+                    'result' => 21.98,
+                    'error' => '');
+        self::assertSame($array, $repository->add($this->first_int, $this->second_int));
     }
 
-    public function testCalculator_adding(): void
+    public function testCalculator_substracting_simple(): void
     {
         $repository = new Calculator();
 
-        self::assertSame(10, $repository->add($this->first_int, $this->second_int));
+        $array = array('first number' => 1599,
+                    'second number' => 599,
+                    'result' => 10.0,
+                    'error' => '');
+        self::assertSame($array, $repository->substract($this->first_int, $this->second_int));
+    }
+
+    public function testCalculator_multiplying_simple(): void
+    {
+        $repository = new Calculator();
+
+        $array = array('first number' => 1599,
+                    'second number' => 599,
+                    'result' => 95.78,
+                    'error' => '');
+        self::assertSame($array, $repository->multiply($this->first_int, $this->second_int));
+    }
+
+    public function testCalculator_divide_simple(): void
+    {
+        $repository = new Calculator();
+
+        $array = array('first number' => 1599,
+                    'second number' => 599,
+                    'result' => 2.66,
+                    'error' => '');
+        self::assertSame($array, $repository->divide($this->first_int, $this->second_int));
+    }
+
+    public function testCalculator_divide_by_zero(): void
+    {
+        $repository = new Calculator();
+
+        $array = array('first number' => 1599,
+                    'second number' => 0,
+                    'result' => 0,
+                    'error' => 'Nie można dzielić przez 0.');
+        self::assertSame($array, $repository->divide($this->first_int, '0'));
     }
 }
