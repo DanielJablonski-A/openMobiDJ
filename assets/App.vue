@@ -29,7 +29,8 @@
                                 <td><input v-model="substractLink" type="text" class="my-calculator-link-style" disabled="true"></td>
                                 <td><input @keyup="substractInput1KeyUp" v-model="substractInput1" type="text" class="form-control my-calculator-input-style"></td>
                                 <td><input @keyup="substractInput2KeyUp" v-model="substractInput2" type="text" class="form-control my-calculator-input-style"></td>
-                                <td><button class="btn btn-primary">Oblicz</button></td>
+                                <td><button @click="substractHandleClick" class="btn btn-primary">Oblicz</button></td>
+                                <td ref="substractResult"></td>
                                 
                             </tr>
                             <tr>
@@ -37,14 +38,16 @@
                                 <td><input v-model="multiplyLink" type="text" class="my-calculator-link-style" disabled="true"></td>
                                 <td><input @keyup="multiplyInput1KeyUp" v-model="multiplyInput1" type="text" class="form-control my-calculator-input-style"></td>
                                 <td><input @keyup="multiplyInput2KeyUp" v-model="multiplyInput2" type="text" class="form-control my-calculator-input-style"></td>
-                                <td><button class="btn btn-primary">Oblicz</button></td>
+                                <td><button @click="multiplyHandleClick" class="btn btn-primary">Oblicz</button></td>
+                                <td ref="multiplyResult"></td>
                             </tr>
                             <tr>
                                 <td>Dzielenie</td>
                                 <td><input v-model="divideLink" type="text" class="my-calculator-link-style" disabled="true"></td>
                                 <td><input @keyup="divideInput1KeyUp" v-model="divideInput1" type="text" class="form-control my-calculator-input-style"></td>
                                 <td><input @keyup="divideInput2KeyUp" v-model="divideInput2" type="text" class="form-control my-calculator-input-style"></td>
-                                <td><button class="btn btn-primary">Oblicz</button></td>
+                                <td><button @click="divideHandleClick" class="btn btn-primary">Oblicz</button></td>
+                                <td ref="divideResult"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -116,15 +119,27 @@
       },
 
       substractHandleClick() {
-        window.open(this.substractLink, '_blank');
+        fetch(this.substractLink)
+            .then(response => response.json())
+            .then(data => {
+                this.$refs.substractResult.innerText = data.result;
+            });
       },
 
       multiplyHandleClick() {
-        window.open(this.multiplyLink, '_blank');
+        fetch(this.multiplyLink)
+            .then(response => response.json())
+            .then(data => {
+                this.$refs.multiplyResult.innerText = data.result;
+            });
       },
 
       divideHandleClick() {
-        window.open(this.divideLink, '_blank');
+        fetch(this.divideLink)
+            .then(response => response.json())
+            .then(data => {
+                this.$refs.divideResult.innerText = data.result;
+            });
       },
 
   }
